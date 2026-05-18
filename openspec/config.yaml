@@ -1,0 +1,61 @@
+# open-spec configuration for "Юрайт: Дела" CRM
+project:
+  name: "yurayt-dela"
+  version: "1.1"
+  description: "Закрытая CRM для юристов (модуль публичного сайта Юрайт.Суды)"
+
+stack:
+  backend:
+    language: "Python 3.11+"
+    framework: "FastAPI"
+    orm: "SQLAlchemy 2.0+ / Tortoise-ORM" # на ваш выбор, SQLAlchemy стандарт де-факто
+    pydantic_version: "v2"
+  frontend:
+    language: "TypeScript"
+    framework: "Next.js 14 (App Router) / React"
+    styling: "Tailwind CSS"
+  database:
+    engine: "PostgreSQL"
+  infrastructure:
+    orchestration: "Docker Compose"
+    ci_cd: "GitHub Actions"
+    auth_provider: "Keycloak (id.you-right.ru, realm: You-right)"
+
+architecture:
+  monorepo: true
+  structure:
+    - apps/backend: "FastAPI приложение"
+    - apps/frontend: "Next.js SPA/PWA приложение"
+    - docker: "Dockerfile и конфигурации контейнеров"
+    - .github/workflows: "Скрипты CI/CD"
+
+features_mvp:
+  auth:
+    mechanism: "JWT via Keycloak"
+    client_id: "yurayt-dela"
+    logic: "При первом входе — upsert пользователя в локальную БД по keycloakSub, подтягивание лимитов"
+  billing:
+    limits_check:
+      - "POST /api/cases/save -> проверка casesUsed >= casesLimit (Error 402)"
+      - "GET /api/cases/ -> проверка subscriptionEndsAt < now (Read-only режим + баннер)"
+    webhook: "POST /api/billing/update (защищен BILLING_WEBHOOK_SECRET)"
+  cases_integration:
+    api_url: "https://api.you-right.ru"
+    sync_cron: "2 раза в сутки (03:00 и 15:00 UTC) через внешний триггер/cron-воркер"
+  modules:
+    - "Главная (Dashboard) с метриками"
+    - "Мои дела (Активные / Завершённые / Архив)"
+    - "Карточка дела (История КАД/ГАС, задачи, заметки, интеграция с Яндекс.Диском)"
+    - "Добавление дела (3-шаговый мастер: поиск/импорт/создание без номера)"
+    - "Задачи и Заметки (с привязкой к делу и без)"
+    - "Календарь заседаний"
+    - "Уведомления и Web Push"
+
+development_guidelines:
+  cursor:
+    prefer_functional_components: true
+    use_pydantic_v2_settings: true
+    strict_typing: true
+  docker:
+    multi_stage_builds: true
+    non_root_user: true

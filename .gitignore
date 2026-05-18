@@ -1,137 +1,36 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
 *.egg-info/
-.installed.cfg
 *.egg
-MANIFEST
-
-# Virtual environments
-.env
-.venv
-env/
+.venv/
 venv/
-ENV/
-env.bak/
-venv.bak/
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
+dist/
+build/
 .pytest_cache/
-cover/
-
-# Type checkers / linters
 .mypy_cache/
-.dmypy.json
-dmypy.json
-.pyre/
-.pytype/
 .ruff_cache/
 
-# Jupyter
-.ipynb_checkpoints
+# Environment
+.env
+.env.local
+.env.*.local
 
-# IPython
-profile_default/
-ipython_config.py
+# Node / Next.js
+node_modules/
+.next/
+out/
+.turbo/
 
-# pyenv / local Python version (uncomment if you don't commit .python-version)
-# .python-version
-
-# pipenv / poetry / pdm / uv
-Pipfile.lock
-# poetry.lock  # uncomment if you don't commit lock file
-.pdm-python
-.pdm-build/
-.pixi
-
-# Celery
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath
-*.sage.py
-
-# Environments & secrets
-.env.*
-!.env.example
-!.env.template
-*.pem
-secrets/
-
-# Django / Flask
+# Docker
 *.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-instance/
-.webassets-cache
-
-# Scrapy
-.scrapy
-
-# Sphinx
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# IDEs
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Docker (local overrides; keep Dockerfile and docker-compose.yml)
-docker-compose.override.yml
-docker-compose.override.yaml
-.docker/
-
-# Volumes / local data (adjust paths as needed)
-data/
-*.sqlite
-*.db
+# IDE
+.idea/
+.vscode/
+*.swp
+.cursor/
