@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     keycloak_issuer: str = ""
     keycloak_client_id: str = ""
     keycloak_client_secret: str = ""
+    keycloak_verify_aud: bool = False
 
     you_right_api_key: str = ""
     billing_webhook_secret: str = ""
