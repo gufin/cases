@@ -1,3 +1,4 @@
+import secrets
 from datetime import datetime, timedelta, timezone
 
 import httpx
@@ -99,3 +100,13 @@ async def get_current_user(
         )
 
     return await upsert_user(db, sub)
+
+
+async def verify_billing_secret(
+    x_billing_secret: str = Header(default=""),
+) -> None:
+    if not secrets.compare_digest(x_billing_secret, settings.billing_webhook_secret):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Invalid billing secret",
+        )
